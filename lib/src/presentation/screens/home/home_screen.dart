@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  static String get routeName => '/home';
+  static String get routeName => '/';
   const HomeScreen({super.key});
 
   @override
