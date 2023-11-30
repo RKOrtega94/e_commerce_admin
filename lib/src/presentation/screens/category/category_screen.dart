@@ -1,6 +1,4 @@
-import 'package:e_commerce_admin/src/presentation/screens/_screens.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CategoryScreen extends StatelessWidget {
   static String get routeName => '/categories';
@@ -14,7 +12,7 @@ class CategoryScreen extends StatelessWidget {
         title: const Text('Categories'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push(CategoryFormScreen.routeName),
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
