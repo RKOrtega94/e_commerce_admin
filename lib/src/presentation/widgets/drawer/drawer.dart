@@ -25,7 +25,7 @@ class DrawerWidget extends StatelessWidget {
           ],
           const Spacer(),
           AppDrawerMenuItem(
-            onTap: () => print('Logout'),
+            onTap: () {},
             title: 'Logout',
             iconData: Icons.logout,
           ),
