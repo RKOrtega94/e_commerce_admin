@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 ///
 /// [routeName] = '/product/form'
 class ProductFormScreen extends StatelessWidget {
+  static String get routeName => '/product/form';
   const ProductFormScreen({super.key});
 
   @override

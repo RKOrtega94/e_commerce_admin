@@ -4,6 +4,7 @@ export 'home/home_screen.dart';
 
 // ====== Product ======
 export 'product/product_screen.dart';
+export 'product/product_form_screen.dart';
 // ====== End Product ======
 
 // ====== Category ======
