@@ -1,31 +1,12 @@
 import 'package:e_commerce_admin/src/presentation/screens/_screens.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 
-final router = GoRouter(
-  initialLocation: HomeScreen.routeName,
-  routes: [
-    GoRoute(
-      path: HomeScreen.routeName,
-      builder: (_, state) => const HomeScreen(),
-    ),
-    GoRoute(
-      path: ProductScreen.routeName,
-      builder: (_, state) => const ProductScreen(),
-    ),
-    GoRoute(
-      path: CategoryScreen.routeName,
-      builder: (_, state) => const CategoryScreen(),
-    ),
-    GoRoute(
-      path: CategoryFormScreen.routeName,
-      builder: (_, state) => const CategoryFormScreen(),
-    ),
-    GoRoute(
-      path: '${CategoryFormScreen.routeName}/:id',
-      builder: (_, state) {
-        final id = state.pathParameters['id']!;
-        return CategoryFormScreen(id: id);
-      },
-    )
-  ],
-);
+/// The list of routes used in the app.
+///
+/// This list is passed to the [GetMaterialApp.getPages] property.
+final List<GetPage<dynamic>> pages = <GetPage>[
+  GetPage(
+    name: HomeScreen.routeName,
+    page: () => const HomeScreen(),
+  ),
+];
