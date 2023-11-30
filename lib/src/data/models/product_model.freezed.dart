@@ -20,11 +20,14 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductModel {
+  String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  int? get categoryId => throw _privateConstructorUsedError;
+  CategoryModel? get category => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +42,16 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
-      {String name,
+      {String? id,
+      String name,
       String description,
       String image,
       double price,
-      int quantity});
+      int quantity,
+      int? categoryId,
+      CategoryModel? category});
+
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -59,13 +67,20 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = null,
     Object? description = null,
     Object? image = null,
     Object? price = null,
     Object? quantity = null,
+    Object? categoryId = freezed,
+    Object? category = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -86,7 +101,27 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      categoryId: freezed == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryModelCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryModelCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
   }
 }
 
@@ -99,11 +134,17 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
+      {String? id,
+      String name,
       String description,
       String image,
       double price,
-      int quantity});
+      int quantity,
+      int? categoryId,
+      CategoryModel? category});
+
+  @override
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -117,13 +158,20 @@ class __$$ProductModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = null,
     Object? description = null,
     Object? image = null,
     Object? price = null,
     Object? quantity = null,
+    Object? categoryId = freezed,
+    Object? category = freezed,
   }) {
     return _then(_$ProductModelImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -144,6 +192,14 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      categoryId: freezed == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
     ));
   }
 }
@@ -152,15 +208,20 @@ class __$$ProductModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductModelImpl with DiagnosticableTreeMixin implements _ProductModel {
   const _$ProductModelImpl(
-      {required this.name,
+      {this.id,
+      required this.name,
       required this.description,
       required this.image,
       required this.price,
-      required this.quantity});
+      required this.quantity,
+      this.categoryId,
+      this.category});
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String name;
   @override
@@ -171,10 +232,14 @@ class _$ProductModelImpl with DiagnosticableTreeMixin implements _ProductModel {
   final double price;
   @override
   final int quantity;
+  @override
+  final int? categoryId;
+  @override
+  final CategoryModel? category;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(name: $name, description: $description, image: $image, price: $price, quantity: $quantity)';
+    return 'ProductModel(id: $id, name: $name, description: $description, image: $image, price: $price, quantity: $quantity, categoryId: $categoryId, category: $category)';
   }
 
   @override
@@ -182,11 +247,14 @@ class _$ProductModelImpl with DiagnosticableTreeMixin implements _ProductModel {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ProductModel'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('image', image))
       ..add(DiagnosticsProperty('price', price))
-      ..add(DiagnosticsProperty('quantity', quantity));
+      ..add(DiagnosticsProperty('quantity', quantity))
+      ..add(DiagnosticsProperty('categoryId', categoryId))
+      ..add(DiagnosticsProperty('category', category));
   }
 
   @override
@@ -194,19 +262,24 @@ class _$ProductModelImpl with DiagnosticableTreeMixin implements _ProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+                other.quantity == quantity) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, description, image, price, quantity);
+  int get hashCode => Object.hash(runtimeType, id, name, description, image,
+      price, quantity, categoryId, category);
 
   @JsonKey(ignore: true)
   @override
@@ -224,15 +297,20 @@ class _$ProductModelImpl with DiagnosticableTreeMixin implements _ProductModel {
 
 abstract class _ProductModel implements ProductModel {
   const factory _ProductModel(
-      {required final String name,
+      {final String? id,
+      required final String name,
       required final String description,
       required final String image,
       required final double price,
-      required final int quantity}) = _$ProductModelImpl;
+      required final int quantity,
+      final int? categoryId,
+      final CategoryModel? category}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
 
+  @override
+  String? get id;
   @override
   String get name;
   @override
@@ -243,6 +321,10 @@ abstract class _ProductModel implements ProductModel {
   double get price;
   @override
   int get quantity;
+  @override
+  int? get categoryId;
+  @override
+  CategoryModel? get category;
   @override
   @JsonKey(ignore: true)
   _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>
