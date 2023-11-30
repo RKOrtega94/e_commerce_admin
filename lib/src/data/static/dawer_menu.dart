@@ -13,9 +13,9 @@ List<MenuModel> drawerMenuItems = <MenuModel>[
     route: ProductScreen.routeName,
     icon: CupertinoIcons.cube_box,
   ),
-  const MenuModel(
+  MenuModel(
     title: 'Categories',
-    route: '/categories',
+    route: CategoryFormScreen.routeName,
     icon: CupertinoIcons.list_bullet,
   ),
 ];

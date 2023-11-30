@@ -1,6 +1,7 @@
 import 'package:e_commerce_admin/src/data/static/dawer_menu.dart';
 import 'package:e_commerce_admin/src/presentation/widgets/drawer/drawer_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -17,7 +18,7 @@ class DrawerWidget extends StatelessWidget {
             ...List.generate(
               drawerMenuItems.length,
               (index) => AppDrawerMenuItem(
-                onTap: () {},
+                onTap: () => Get.toNamed(drawerMenuItems[index].route),
                 title: drawerMenuItems[index].title,
                 iconData: drawerMenuItems[index].icon,
               ),

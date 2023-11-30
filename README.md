@@ -13,5 +13,5 @@ E-commerce project for manage
 
 ## Packages / Paquetes
 
-- [go_router](https://pub.dev/packages/go_router)
+- [GetX](https://pub.dev/packages/get)
 - [freezed](https://pub.dev/packages/freezed)
