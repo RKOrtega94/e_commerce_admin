@@ -5,6 +5,9 @@ import 'package:e_commerce_admin/src/presentation/widgets/_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/// [HomeScreen] displays the home screen.
+///
+/// [routeName] = '/'
 class HomeScreen extends StatelessWidget {
   static String get routeName => '/';
   const HomeScreen({super.key});
