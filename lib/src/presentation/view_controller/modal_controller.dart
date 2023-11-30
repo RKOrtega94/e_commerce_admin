@@ -9,6 +9,7 @@ class CustomModal {
     required Function() onPressed,
   }) =>
       Get.bottomSheet(
+        enableDrag: true,
         Container(
           color: Colors.white,
           child: Wrap(
