@@ -11,7 +11,14 @@ class CustomModal {
       Get.bottomSheet(
         enableDrag: true,
         Container(
-          color: Colors.white,
+          padding: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+          ),
           child: Wrap(
             children: [
               ListTile(

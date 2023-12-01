@@ -1,5 +1,5 @@
 import 'package:e_commerce_admin/src/presentation/screens/home/components/time_filter.dart';
-import 'package:e_commerce_admin/src/presentation/widgets/modal/modal.dart';
+import 'package:e_commerce_admin/src/presentation/view_controller/_controllers.dart';
 import 'package:flutter/material.dart';
 
 class FilterSection extends StatelessWidget {
@@ -17,7 +17,12 @@ class FilterSection extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           ElevatedButton(
-            onPressed: () => openModal(context),
+            onPressed: () => CustomModal.show(
+              title: "title",
+              message: "message",
+              buttonText: "buttonText",
+              onPressed: () {},
+            ),
             child: const Row(
               children: [
                 Icon(
