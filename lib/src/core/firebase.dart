@@ -20,15 +20,17 @@ class AppFirebase {
   /// ```dart
   /// await AppFirebase().get(collection: 'users', orderBy: 'createdAt', descending: true);
   /// ```
-  Future<QuerySnapshot<Map<String, dynamic>>> get({
+  Future<List<Map<String, dynamic>>> get({
     required String collection,
     String? orderBy,
     bool descending = false,
   }) async {
-    return await db
+    final QuerySnapshot<Map<String, dynamic>> res = await db
         .collection(collection)
         .orderBy(orderBy ?? 'createdAt', descending: descending)
         .get();
+
+    return res.docs.map((e) => e.data()).toList();
   }
 
   /// Get a document from a collection

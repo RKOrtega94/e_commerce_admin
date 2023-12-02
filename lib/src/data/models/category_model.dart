@@ -7,6 +7,7 @@ part 'category_model.g.dart';
 @freezed
 class CategoryModel with _$CategoryModel {
   const factory CategoryModel({
+    String? id,
     required String name,
     required String description,
     required String? image,

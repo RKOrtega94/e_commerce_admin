@@ -18,6 +18,7 @@ class CategoryController extends GetxController {
   String get description => _description.value;
   String get image => _image.value;
   String get status => _status.value;
+  List<CategoryModel> get categories => _categories;
 
   void setName(String value) => _name.value = value;
   void setDescription(String value) => _description.value = value;
@@ -67,15 +68,31 @@ class CategoryController extends GetxController {
     return null;
   }
 
-  Future<void> submit() async {
+  Future<void> submit(String? id) async {
     final CategoryModel category = CategoryModel(
+      id: id,
       name: name,
       description: description,
       image: image.isNotEmpty ? image : null,
     );
     try {
-      await _categoryRepository.add(category);
+      final CategoryModel res;
+      if (id == null) {
+        res = await _categoryRepository.add(category);
+      } else {
+        res = await _categoryRepository.update(category);
+      }
+      _categories.add(res);
       clear();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> delete(String id) async {
+    try {
+      await _categoryRepository.delete(id);
+      _categories.removeWhere((category) => category.id == id);
     } catch (e) {
       rethrow;
     }

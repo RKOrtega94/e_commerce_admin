@@ -20,6 +20,7 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoryModel {
+  String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ abstract class $CategoryModelCopyWith<$Res> {
           CategoryModel value, $Res Function(CategoryModel) then) =
       _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
-  $Res call({String name, String description, String? image});
+  $Res call({String? id, String name, String description, String? image});
 }
 
 /// @nodoc
@@ -52,11 +53,16 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = null,
     Object? description = null,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -81,7 +87,7 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       __$$CategoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String description, String? image});
+  $Res call({String? id, String name, String description, String? image});
 }
 
 /// @nodoc
@@ -95,11 +101,16 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = null,
     Object? description = null,
     Object? image = freezed,
   }) {
     return _then(_$CategoryModelImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -122,11 +133,16 @@ class _$CategoryModelImpl
     with DiagnosticableTreeMixin
     implements _CategoryModel {
   const _$CategoryModelImpl(
-      {required this.name, required this.description, required this.image});
+      {this.id,
+      required this.name,
+      required this.description,
+      required this.image});
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String name;
   @override
@@ -136,7 +152,7 @@ class _$CategoryModelImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CategoryModel(name: $name, description: $description, image: $image)';
+    return 'CategoryModel(id: $id, name: $name, description: $description, image: $image)';
   }
 
   @override
@@ -144,6 +160,7 @@ class _$CategoryModelImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'CategoryModel'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('image', image));
@@ -154,6 +171,7 @@ class _$CategoryModelImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -162,7 +180,7 @@ class _$CategoryModelImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, image);
+  int get hashCode => Object.hash(runtimeType, id, name, description, image);
 
   @JsonKey(ignore: true)
   @override
@@ -180,13 +198,16 @@ class _$CategoryModelImpl
 
 abstract class _CategoryModel implements CategoryModel {
   const factory _CategoryModel(
-      {required final String name,
+      {final String? id,
+      required final String name,
       required final String description,
       required final String? image}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
 
+  @override
+  String? get id;
   @override
   String get name;
   @override

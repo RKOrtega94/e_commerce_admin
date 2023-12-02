@@ -29,8 +29,12 @@ class CategoryDataSource extends ICategoryDataSource {
 
   @override
   Future<List<CategoryModel>> getAll() {
-    // TODO: implement getAll
-    throw UnimplementedError();
+    try {
+      return app.get(collection: 'categories').then((value) =>
+          value.map<CategoryModel>((e) => CategoryModel.fromJson(e)).toList());
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

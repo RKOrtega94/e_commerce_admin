@@ -27,10 +27,7 @@ class CategoryRepository implements ICategoryRepository {
   }
 
   @override
-  Future<List<CategoryModel>> getAll() {
-    // TODO: implement getAll
-    throw UnimplementedError();
-  }
+  Future<List<CategoryModel>> getAll() => _dataSource.getAll();
 
   @override
   Future<CategoryModel> update(CategoryModel category) {
