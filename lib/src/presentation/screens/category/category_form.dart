@@ -1,3 +1,4 @@
+import 'package:e_commerce_admin/src/presentation/widgets/_widgets.dart';
 import 'package:e_commerce_admin/src/presentation/widgets/shared/image_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +45,9 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
                     setState(() => _imagePath = value);
                   },
                 ),
-                TextFormField(),
+                const SizedBox(height: 10),
+                const AppTextFormWidget(),
+                const SizedBox(height: 10),
                 TextFormField(
                   keyboardType: TextInputType.multiline,
                   minLines: 3,
