@@ -15,7 +15,7 @@ final List<GetPage<dynamic>> pages = <GetPage>[
   ),
   GetPage(
     name: CategoryScreen.routeName,
-    page: () => const CategoryScreen(),
+    page: () => CategoryScreen(),
   ),
   GetPage(
     name: CategoryFormScreen.routeName,

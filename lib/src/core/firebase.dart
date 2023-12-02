@@ -25,10 +25,8 @@ class AppFirebase {
     String? orderBy,
     bool descending = false,
   }) async {
-    final QuerySnapshot<Map<String, dynamic>> res = await db
-        .collection(collection)
-        .orderBy(orderBy ?? 'createdAt', descending: descending)
-        .get();
+    final QuerySnapshot<Map<String, dynamic>> res =
+        await db.collection(collection).get();
 
     return res.docs.map((e) => e.data()).toList();
   }

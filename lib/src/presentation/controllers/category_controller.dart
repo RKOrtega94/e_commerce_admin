@@ -1,6 +1,7 @@
 import 'package:e_commerce_admin/src/data/data_sources/firebase/category_datasource.dart';
 import 'package:e_commerce_admin/src/data/models/category_model.dart';
 import 'package:e_commerce_admin/src/data/repository/category_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
@@ -12,13 +13,13 @@ class CategoryController extends GetxController {
   final _description = ''.obs;
   final _image = ''.obs;
   final _status = ''.obs;
-  final List<CategoryModel> _categories = <CategoryModel>[].obs;
+  final _categories = [].obs;
 
   String get name => _name.value;
   String get description => _description.value;
   String get image => _image.value;
   String get status => _status.value;
-  List<CategoryModel> get categories => _categories;
+  get categories => _categories;
 
   void setName(String value) => _name.value = value;
   void setDescription(String value) => _description.value = value;
@@ -37,15 +38,16 @@ class CategoryController extends GetxController {
     try {
       final List<CategoryModel> categories = await _categoryRepository.getAll();
       _categories.assignAll(categories);
+      debugPrint('Categories: ${_categories.length}');
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  void onInit() {
-    fetch();
+  void onInit() async {
     super.onInit();
+    await fetch();
   }
 
   String? validateName(String? value) {
@@ -85,8 +87,6 @@ class CategoryController extends GetxController {
         Get.snackbar('Success!', "Category updated successfully");
       }
       _categories.add(res);
-      clear();
-      Get.back();
     } catch (e) {
       rethrow;
     }

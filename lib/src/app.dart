@@ -1,3 +1,4 @@
+import 'package:e_commerce_admin/src/initial_bindings.dart';
 import 'package:e_commerce_admin/src/presentation/router/_router.dart';
 import 'package:e_commerce_admin/src/presentation/screens/_screens.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'E-Commerce Admin',
+      initialBinding: InitialBinding(),
       home: const HomeScreen(),
       getPages: pages,
     );

@@ -1,4 +1,4 @@
-import 'package:e_commerce_admin/src/presentation/controllers/_controller.dart';
+import 'package:e_commerce_admin/src/presentation/controllers/_controllers.dart';
 import 'package:e_commerce_admin/src/presentation/widgets/_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,7 @@ class CategoryFormScreen extends StatefulWidget {
 class _CategoryFormScreenState extends State<CategoryFormScreen> {
   String? _imagePath;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final _controller = Get.put(CategoryController());
+  final _controller = Get.find<CategoryController>();
   @override
   void initState() {
     super.initState();
@@ -73,7 +73,16 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        _controller.submit(widget.id);
+                        _controller.submit(widget.id).then(
+                              (value) => {
+                                Get.snackbar(
+                                    "Success",
+                                    widget.id == null
+                                        ? "Category added successfully"
+                                        : "Category updated successfully"),
+                                Get.back(),
+                              },
+                            );
                       }
                     },
                     child: Text(widget.id == null ? 'Add' : 'Update'),

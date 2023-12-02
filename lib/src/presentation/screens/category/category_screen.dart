@@ -1,15 +1,16 @@
 import 'package:e_commerce_admin/src/presentation/controllers/category_controller.dart';
 import 'package:e_commerce_admin/src/presentation/screens/_screens.dart';
+import 'package:e_commerce_admin/src/presentation/widgets/category/category_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryScreen extends StatelessWidget {
   static String get routeName => '/categories';
-  const CategoryScreen({super.key});
+  CategoryScreen({super.key});
+  final controller = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
-    CategoryController controller = Get.put(CategoryController());
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
@@ -35,9 +36,7 @@ class CategoryScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemCount: controller.categories.length,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text('Category $index'),
-                ),
+                itemBuilder: (context, index) => const AppCategoryTile(),
               ),
             ),
           ],
