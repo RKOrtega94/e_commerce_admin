@@ -1,7 +1,6 @@
 import 'package:e_commerce_admin/src/data/data_sources/firebase/category_datasource.dart';
 import 'package:e_commerce_admin/src/data/models/category_model.dart';
 import 'package:e_commerce_admin/src/data/repository/category_repository.dart';
-import 'package:e_commerce_admin/src/presentation/view_controller/_controllers.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
