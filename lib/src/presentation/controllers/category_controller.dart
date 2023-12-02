@@ -1,6 +1,7 @@
 import 'package:e_commerce_admin/src/data/data_sources/firebase/category_datasource.dart';
 import 'package:e_commerce_admin/src/data/models/category_model.dart';
 import 'package:e_commerce_admin/src/data/repository/category_repository.dart';
+import 'package:e_commerce_admin/src/presentation/view_controller/_controllers.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
@@ -79,11 +80,14 @@ class CategoryController extends GetxController {
       final CategoryModel res;
       if (id == null) {
         res = await _categoryRepository.add(category);
+        Get.snackbar('Success!', "Category added successfully");
       } else {
         res = await _categoryRepository.update(category);
+        Get.snackbar('Success!', "Category updated successfully");
       }
       _categories.add(res);
       clear();
+      Get.back();
     } catch (e) {
       rethrow;
     }

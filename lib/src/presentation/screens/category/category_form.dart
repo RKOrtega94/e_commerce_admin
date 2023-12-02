@@ -53,7 +53,9 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
                   labelText: 'Name',
                   hintText: 'Enter category name',
                   validator: (value) => _controller.validateName(value),
-                  onChanged: (value) => _controller.setName(value),
+                  onChanged: (value) => setState(() {
+                    _controller.setName(value);
+                  }),
                 ),
                 const SizedBox(height: 10),
                 AppTextFormWidget(
@@ -61,13 +63,19 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 5,
                   validator: (value) => _controller.validateDescription(value),
-                  onChanged: (value) => _controller.setDescription(value),
+                  onChanged: (value) => setState(() {
+                    _controller.setDescription(value);
+                  }),
                 ),
                 const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        _controller.submit(widget.id);
+                      }
+                    },
                     child: Text(widget.id == null ? 'Add' : 'Update'),
                   ),
                 ),

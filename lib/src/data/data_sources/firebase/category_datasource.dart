@@ -8,7 +8,12 @@ class CategoryDataSource extends ICategoryDataSource {
   Future<CategoryModel> add(CategoryModel category) async {
     try {
       final Map<String, dynamic> document =
-          await app.add(collection: 'categories', data: category.toJson());
+          await app.add(collection: 'categories', data: {
+        'name': category.name,
+        'description': category.description,
+        'image': category.image,
+        'status': true,
+      });
       return CategoryModel.fromJson(document);
     } catch (e) {
       rethrow;
