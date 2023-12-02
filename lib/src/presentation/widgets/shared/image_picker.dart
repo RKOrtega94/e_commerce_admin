@@ -17,6 +17,7 @@ class AppImagePickers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('image: $image');
     return GetBuilder<ImagePickerController>(
       init: ImagePickerController(),
       builder: (controller) => Container(
@@ -39,11 +40,14 @@ class AppImagePickers extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // Image from path string
-              if (image != null)
+              if (image != '' && image != null)
                 Image.file(
-                  image!.isNotEmpty ? File(image!) : File(''),
+                  File(image!),
                   fit: BoxFit.cover,
+                ),
+              if (image == '' && image != null)
+                Container(
+                  color: Colors.grey[200],
                 ),
               Positioned.fill(
                 child: Align(
@@ -80,10 +84,13 @@ class AppImagePickers extends StatelessWidget {
                                           onPressed: () => controller
                                               .pickImageFromCamera()
                                               .then(
-                                            (value) {
-                                              print(controller.image);
-                                            },
-                                          ),
+                                                (value) => {
+                                                  onImageChanged(
+                                                    controller.image,
+                                                  ),
+                                                  Get.back(),
+                                                },
+                                              ),
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
                                               vertical: 10,
@@ -113,7 +120,15 @@ class AppImagePickers extends StatelessWidget {
                                       const SizedBox(width: 10),
                                       Expanded(
                                         child: ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () =>
+                                              controller.pickImage().then(
+                                                    (value) => {
+                                                      onImageChanged(
+                                                        controller.image,
+                                                      ),
+                                                      Get.back(),
+                                                    },
+                                                  ),
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
                                               vertical: 10,

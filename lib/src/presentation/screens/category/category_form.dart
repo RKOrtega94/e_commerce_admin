@@ -39,7 +39,10 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
               children: [
                 AppImagePickers(
                   image: _imagePath,
-                  onImageChanged: (value) => setState(() => _imagePath = value),
+                  onImageChanged: (value) {
+                    debugPrint('value: $value');
+                    setState(() => _imagePath = value);
+                  },
                 ),
                 TextFormField(),
                 TextFormField(
