@@ -3,7 +3,7 @@ import 'package:e_commerce_admin/src/data/models/category_model.dart';
 import 'package:e_commerce_admin/src/data/repository/category_repository.dart';
 import 'package:get/get.dart';
 
-class CategoryFormController extends GetxController {
+class CategoryController extends GetxController {
   final CategoryRepository _categoryRepository = CategoryRepository(
     CategoryDataSource(),
   );
@@ -12,6 +12,7 @@ class CategoryFormController extends GetxController {
   final _description = ''.obs;
   final _image = ''.obs;
   final _status = ''.obs;
+  final List<CategoryModel> _categories = <CategoryModel>[].obs;
 
   String get name => _name.value;
   String get description => _description.value;
@@ -28,6 +29,22 @@ class CategoryFormController extends GetxController {
     _description.value = '';
     _image.value = '';
     _status.value = '';
+  }
+
+  /// Get all categories
+  Future<void> fetch() async {
+    try {
+      final List<CategoryModel> categories = await _categoryRepository.getAll();
+      _categories.assignAll(categories);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  void onInit() {
+    fetch();
+    super.onInit();
   }
 
   String? validateName(String? value) {

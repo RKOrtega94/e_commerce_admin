@@ -18,7 +18,7 @@ class CategoryFormScreen extends StatefulWidget {
 class _CategoryFormScreenState extends State<CategoryFormScreen> {
   String? _imagePath;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final _controller = Get.put(CategoryFormController());
+  final _controller = Get.put(CategoryController());
   @override
   void initState() {
     super.initState();
