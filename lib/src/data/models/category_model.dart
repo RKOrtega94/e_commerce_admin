@@ -9,7 +9,7 @@ class CategoryModel with _$CategoryModel {
   const factory CategoryModel({
     required String name,
     required String description,
-    required String image,
+    required String? image,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

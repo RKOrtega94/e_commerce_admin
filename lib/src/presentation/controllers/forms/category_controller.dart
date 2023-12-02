@@ -1,6 +1,13 @@
+import 'package:e_commerce_admin/src/data/data_sources/firebase/category_datasource.dart';
+import 'package:e_commerce_admin/src/data/models/category_model.dart';
+import 'package:e_commerce_admin/src/data/repository/category_repository.dart';
 import 'package:get/get.dart';
 
 class CategoryFormController extends GetxController {
+  final CategoryRepository _categoryRepository = CategoryRepository(
+    CategoryDataSource(),
+  );
+
   final _name = ''.obs;
   final _description = ''.obs;
   final _image = ''.obs;
@@ -41,5 +48,19 @@ class CategoryFormController extends GetxController {
       return 'Description must be at least 3 characters';
     }
     return null;
+  }
+
+  Future<void> submit() async {
+    final CategoryModel category = CategoryModel(
+      name: name,
+      description: description,
+      image: image.isNotEmpty ? image : null,
+    );
+    try {
+      await _categoryRepository.add(category);
+      clear();
+    } catch (e) {
+      rethrow;
+    }
   }
 }
