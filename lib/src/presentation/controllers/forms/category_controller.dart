@@ -22,4 +22,24 @@ class CategoryFormController extends GetxController {
     _image.value = '';
     _status.value = '';
   }
+
+  String? validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Name is required';
+    }
+    if (value.length < 3) {
+      return 'Name must be at least 3 characters';
+    }
+    return null;
+  }
+
+  String? validateDescription(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Description is required';
+    }
+    if (value.length < 3) {
+      return 'Description must be at least 3 characters';
+    }
+    return null;
+  }
 }

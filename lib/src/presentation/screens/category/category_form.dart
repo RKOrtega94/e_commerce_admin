@@ -1,5 +1,7 @@
+import 'package:e_commerce_admin/src/presentation/controllers/_controller.dart';
 import 'package:e_commerce_admin/src/presentation/widgets/_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryFormScreen extends StatefulWidget {
   static String get routeName => '/categories/form';
@@ -16,6 +18,7 @@ class CategoryFormScreen extends StatefulWidget {
 class _CategoryFormScreenState extends State<CategoryFormScreen> {
   String? _imagePath;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final _controller = Get.put(CategoryFormController());
   @override
   void initState() {
     super.initState();
@@ -49,14 +52,16 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
                 AppTextFormWidget(
                   labelText: 'Name',
                   hintText: 'Enter category name',
-                  onChanged: (value) {},
+                  validator: (value) => _controller.validateName(value),
+                  onChanged: (value) => _controller.setName(value),
                 ),
                 const SizedBox(height: 10),
                 AppTextFormWidget(
                   hintText: 'Enter category description',
                   keyboardType: TextInputType.multiline,
                   maxLines: 5,
-                  onChanged: (value) {},
+                  validator: (value) => _controller.validateDescription(value),
+                  onChanged: (value) => _controller.setDescription(value),
                 ),
                 const SizedBox(height: 10),
                 SizedBox(

@@ -23,4 +23,8 @@ class ImagePickerController extends GetxController {
       _image.value = pickedFile.path;
     }
   }
+
+  void clear() {
+    _image.value = '';
+  }
 }

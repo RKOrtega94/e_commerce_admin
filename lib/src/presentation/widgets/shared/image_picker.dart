@@ -17,7 +17,6 @@ class AppImagePickers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('image: $image');
     final ImagePickerController controller = Get.put(ImagePickerController());
     return Container(
       width: MediaQuery.of(Get.context!).size.width > 600
@@ -154,36 +153,40 @@ class AppImagePickers extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            child: const Align(
-                              alignment: Alignment.center,
-                              child: Icon(CupertinoIcons.camera_fill),
+                            child: Align(
+                              alignment: controller.image != ''
+                                  ? Alignment.centerRight
+                                  : Alignment.center,
+                              child: const Icon(CupertinoIcons.camera_fill),
                             ),
                           ),
                         ),
                       ),
-                      /* Expanded(
-                            child: ElevatedButtonTheme(
-                              data: ElevatedButtonThemeData(
-                                style: ElevatedButton.styleFrom(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(0),
-                                  ),
-                                  foregroundColor: Colors.white,
-                                  backgroundColor:
-                                      Colors.red[300]!.withOpacity(0.5),
+                      if (controller.image != '')
+                        Expanded(
+                          child: ElevatedButtonTheme(
+                            data: ElevatedButtonThemeData(
+                              style: ElevatedButton.styleFrom(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0),
                                 ),
-                              ),
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Icon(CupertinoIcons.delete_solid),
-                                ),
+                                foregroundColor: Colors.white,
+                                backgroundColor:
+                                    Colors.red[300]!.withOpacity(0.5),
                               ),
                             ),
-                          ), */
+                            child: ElevatedButton(
+                              onPressed: () =>
+                                  {controller.clear(), onImageChanged('')},
+                              child: const Align(
+                                alignment: Alignment.centerLeft,
+                                child: Icon(CupertinoIcons.delete_solid),
+                              ),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
