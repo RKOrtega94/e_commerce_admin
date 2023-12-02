@@ -47,14 +47,17 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
                 ),
                 const SizedBox(height: 10),
                 AppTextFormWidget(
+                  labelText: 'Name',
+                  hintText: 'Enter category name',
                   onChanged: (value) {},
                 ),
                 const SizedBox(height: 10),
-                /* TextFormField(
+                AppTextFormWidget(
+                  hintText: 'Enter category description',
                   keyboardType: TextInputType.multiline,
-                  minLines: 3,
                   maxLines: 5,
-                ), */
+                  onChanged: (value) {},
+                ),
                 const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
