@@ -15,7 +15,7 @@ List<MenuModel> drawerMenuItems = <MenuModel>[
   ),
   MenuModel(
     title: 'Categories',
-    route: CategoryFormScreen.routeName,
+    route: CategoryScreen.routeName,
     icon: CupertinoIcons.list_bullet,
   ),
 ];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CategoryFormScreen extends StatelessWidget {
+class CategoryFormScreen extends StatefulWidget {
   static String get routeName => '/categories/form';
   final String? id;
   const CategoryFormScreen({
@@ -9,12 +9,17 @@ class CategoryFormScreen extends StatelessWidget {
   });
 
   @override
+  State<CategoryFormScreen> createState() => _CategoryFormScreenState();
+}
+
+class _CategoryFormScreenState extends State<CategoryFormScreen> {
+  @override
   Widget build(BuildContext context) {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
-        title: Text(id == null ? 'Add Category' : 'Edit Category'),
+        title: Text(widget.id == null ? 'Add Category' : 'Edit Category'),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -32,6 +37,14 @@ class CategoryFormScreen extends StatelessWidget {
                   keyboardType: TextInputType.multiline,
                   minLines: 3,
                   maxLines: 5,
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(widget.id == null ? 'Add' : 'Update'),
+                  ),
                 ),
               ],
             ),

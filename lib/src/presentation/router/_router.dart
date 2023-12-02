@@ -14,6 +14,14 @@ final List<GetPage<dynamic>> pages = <GetPage>[
     page: () => const ProductScreen(),
   ),
   GetPage(
+    name: CategoryScreen.routeName,
+    page: () => const CategoryScreen(),
+  ),
+  GetPage(
+    name: CategoryFormScreen.routeName,
+    page: () => const CategoryFormScreen(),
+  ),
+  GetPage(
     name: '${ProductFormScreen.routeName}/:id',
     page: () => const ProductFormScreen(),
   ),
