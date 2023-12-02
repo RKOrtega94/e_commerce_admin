@@ -1,14 +1,13 @@
 import 'package:e_commerce_admin/src/presentation/widgets/_widgets.dart';
-import 'package:e_commerce_admin/src/presentation/widgets/shared/image_picker.dart';
 import 'package:flutter/material.dart';
 
 class CategoryFormScreen extends StatefulWidget {
   static String get routeName => '/categories/form';
   final String? id;
   const CategoryFormScreen({
-    super.key,
+    Key? key,
     this.id,
-  });
+  }) : super(key: key);
 
   @override
   State<CategoryFormScreen> createState() => _CategoryFormScreenState();
@@ -16,6 +15,7 @@ class CategoryFormScreen extends StatefulWidget {
 
 class _CategoryFormScreenState extends State<CategoryFormScreen> {
   String? _imagePath;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -23,7 +23,6 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
@@ -33,9 +32,10 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(10),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
+        child: Form(
+          key: formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 AppImagePickers(
@@ -46,13 +46,15 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
                   },
                 ),
                 const SizedBox(height: 10),
-                const AppTextFormWidget(),
+                AppTextFormWidget(
+                  onChanged: (value) {},
+                ),
                 const SizedBox(height: 10),
-                TextFormField(
+                /* TextFormField(
                   keyboardType: TextInputType.multiline,
                   minLines: 3,
                   maxLines: 5,
-                ),
+                ), */
                 const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
