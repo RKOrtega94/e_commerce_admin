@@ -1,7 +1,5 @@
-import 'package:e_commerce_admin/src/presentation/controllers/_controller.dart';
 import 'package:e_commerce_admin/src/presentation/widgets/shared/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CategoryFormScreen extends StatefulWidget {
   static String get routeName => '/categories/form';
