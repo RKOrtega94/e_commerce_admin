@@ -14,6 +14,7 @@ class CategoryFormScreen extends StatefulWidget {
 }
 
 class _CategoryFormScreenState extends State<CategoryFormScreen> {
+  String? _imagePath;
   @override
   void initState() {
     super.initState();
@@ -36,8 +37,10 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
             key: formKey,
             child: Column(
               children: [
-                /* Image picker */
-                const AppImagePickers(),
+                AppImagePickers(
+                  image: _imagePath,
+                  onImageChanged: (value) => setState(() => _imagePath = value),
+                ),
                 TextFormField(),
                 TextFormField(
                   keyboardType: TextInputType.multiline,
