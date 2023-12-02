@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 class CustomModal {
   static void show({
     required String title,
-    required String message,
-    required String buttonText,
-    required Function() onPressed,
+    required Widget child,
   }) =>
       Get.bottomSheet(
         enableDrag: true,
+        isDismissible: true,
         Container(
           padding: const EdgeInsets.all(10),
+          width: MediaQuery.of(Get.context!).size.width,
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -19,17 +19,30 @@ class CustomModal {
               topRight: Radius.circular(10),
             ),
           ),
-          child: Wrap(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTile(
-                title: Text(title),
-                subtitle: Text(message),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: 60,
+                  height: 3,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: Theme.of(Get.context!).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               const Divider(),
-              ListTile(
-                title: Text(buttonText),
-                onTap: onPressed,
-              ),
+              child,
             ],
           ),
         ),

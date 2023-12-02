@@ -1,4 +1,7 @@
+import 'package:e_commerce_admin/src/presentation/controllers/_controller.dart';
+import 'package:e_commerce_admin/src/presentation/widgets/shared/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryFormScreen extends StatefulWidget {
   static String get routeName => '/categories/form';
@@ -13,6 +16,11 @@ class CategoryFormScreen extends StatefulWidget {
 }
 
 class _CategoryFormScreenState extends State<CategoryFormScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -31,7 +39,7 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
             child: Column(
               children: [
                 /* Image picker */
-                const Placeholder(),
+                const AppImagePickers(),
                 TextFormField(),
                 TextFormField(
                   keyboardType: TextInputType.multiline,

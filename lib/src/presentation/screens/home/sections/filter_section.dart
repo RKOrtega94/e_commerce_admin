@@ -19,9 +19,7 @@ class FilterSection extends StatelessWidget {
           ElevatedButton(
             onPressed: () => CustomModal.show(
               title: "title",
-              message: "message",
-              buttonText: "buttonText",
-              onPressed: () {},
+              child: const Placeholder(),
             ),
             child: const Row(
               children: [
