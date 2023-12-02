@@ -70,7 +70,7 @@ class AppFirebase {
   /// ```dart
   /// await AppFirebase().add(collection: 'users', data: {'label': 'value'});
   /// ```
-  Future<DocumentReference<Map<String, dynamic>>> add({
+  Future<Map<String, dynamic>> add({
     required String collection,
     required Map<String, dynamic> data,
   }) async {
@@ -80,7 +80,8 @@ class AppFirebase {
       ...data,
     });
 
-    return db.collection(collection).doc(id);
+    final item = await db.collection(collection).doc(id).get();
+    return item.data()!;
   }
 
   /// Update a document from a collection
