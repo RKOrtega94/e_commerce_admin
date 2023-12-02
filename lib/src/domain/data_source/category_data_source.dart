@@ -1,7 +1,7 @@
 import 'package:e_commerce_admin/src/data/models/_models.dart';
 
 /// Interface for category data source
-abstract class CategoryDataSource {
+abstract class ICategoryDataSource {
   /// Get all categories
   Future<List<CategoryModel>> getAll();
 
