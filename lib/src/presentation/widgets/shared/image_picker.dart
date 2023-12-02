@@ -18,154 +18,150 @@ class AppImagePickers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint('image: $image');
-    return GetBuilder<ImagePickerController>(
-      init: ImagePickerController(),
-      builder: (controller) => Container(
-        width: MediaQuery.of(Get.context!).size.width > 600
-            ? MediaQuery.of(Get.context!).size.width * 0.3
-            : 200,
-        height: MediaQuery.of(Get.context!).size.width > 600
-            ? MediaQuery.of(Get.context!).size.width * 0.3
-            : 200,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.grey[200],
-          border: Border.all(
-            color: Colors.grey,
-            width: 1,
-          ),
+    final ImagePickerController controller = Get.put(ImagePickerController());
+    return Container(
+      width: MediaQuery.of(Get.context!).size.width > 600
+          ? MediaQuery.of(Get.context!).size.width * 0.3
+          : 200,
+      height: MediaQuery.of(Get.context!).size.width > 600
+          ? MediaQuery.of(Get.context!).size.width * 0.3
+          : 200,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.grey[200],
+        border: Border.all(
+          color: Colors.grey,
+          width: 1,
         ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              if (image != '' && image != null)
-                Image.file(
-                  File(image!),
-                  fit: BoxFit.cover,
-                ),
-              if (image == '' && image != null)
-                Container(
-                  color: Colors.grey[200],
-                ),
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    height: 40,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: ElevatedButtonTheme(
-                            data: ElevatedButtonThemeData(
-                              style: ElevatedButton.styleFrom(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(0),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            if (image != '' && image != null)
+              Image.file(
+                File(image!),
+                fit: BoxFit.cover,
+              ),
+            if (image == '' && image != null)
+              Container(
+                color: Colors.grey[200],
+              ),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  height: 40,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: ElevatedButtonTheme(
+                          data: ElevatedButtonThemeData(
+                            style: ElevatedButton.styleFrom(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0),
+                              ),
+                              foregroundColor: Colors.white,
+                              backgroundColor:
+                                  Colors.green[300]!.withOpacity(0.5),
+                            ),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () => CustomModal.show(
+                              title: "Agregar imagen",
+                              child: SizedBox(
+                                height: 80,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        onPressed: () => controller
+                                            .pickImageFromCamera()
+                                            .then(
+                                              (value) => {
+                                                onImageChanged(
+                                                  controller.image,
+                                                ),
+                                                Get.back(),
+                                              },
+                                            ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 10,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: LayoutBuilder(
+                                                  builder:
+                                                      (context, constrains) =>
+                                                          Icon(
+                                                    CupertinoIcons.camera_fill,
+                                                    size: constrains.maxHeight *
+                                                        0.7,
+                                                  ),
+                                                ),
+                                              ),
+                                              const Text('Cámara'),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        onPressed: () =>
+                                            controller.pickImage().then(
+                                                  (value) => {
+                                                    onImageChanged(
+                                                      controller.image,
+                                                    ),
+                                                    Get.back(),
+                                                  },
+                                                ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 10,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: LayoutBuilder(
+                                                  builder:
+                                                      (context, constrains) =>
+                                                          Icon(
+                                                    CupertinoIcons.photo_fill,
+                                                    size: constrains.maxHeight *
+                                                        0.7,
+                                                  ),
+                                                ),
+                                              ),
+                                              const Text('Galería'),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                foregroundColor: Colors.white,
-                                backgroundColor:
-                                    Colors.green[300]!.withOpacity(0.5),
                               ),
                             ),
-                            child: ElevatedButton(
-                              onPressed: () => CustomModal.show(
-                                title: "Agregar imagen",
-                                child: SizedBox(
-                                  height: 80,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: () => controller
-                                              .pickImageFromCamera()
-                                              .then(
-                                                (value) => {
-                                                  onImageChanged(
-                                                    controller.image,
-                                                  ),
-                                                  Get.back(),
-                                                },
-                                              ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 10,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: LayoutBuilder(
-                                                    builder:
-                                                        (context, constrains) =>
-                                                            Icon(
-                                                      CupertinoIcons
-                                                          .camera_fill,
-                                                      size:
-                                                          constrains.maxHeight *
-                                                              0.7,
-                                                    ),
-                                                  ),
-                                                ),
-                                                const Text('Cámara'),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: () =>
-                                              controller.pickImage().then(
-                                                    (value) => {
-                                                      onImageChanged(
-                                                        controller.image,
-                                                      ),
-                                                      Get.back(),
-                                                    },
-                                                  ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 10,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: LayoutBuilder(
-                                                    builder:
-                                                        (context, constrains) =>
-                                                            Icon(
-                                                      CupertinoIcons.photo_fill,
-                                                      size:
-                                                          constrains.maxHeight *
-                                                              0.7,
-                                                    ),
-                                                  ),
-                                                ),
-                                                const Text('Galería'),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              child: const Align(
-                                alignment: Alignment.center,
-                                child: Icon(CupertinoIcons.camera_fill),
-                              ),
+                            child: const Align(
+                              alignment: Alignment.center,
+                              child: Icon(CupertinoIcons.camera_fill),
                             ),
                           ),
                         ),
-                        /* Expanded(
+                      ),
+                      /* Expanded(
                             child: ElevatedButtonTheme(
                               data: ElevatedButtonThemeData(
                                 style: ElevatedButton.styleFrom(
@@ -188,13 +184,12 @@ class AppImagePickers extends StatelessWidget {
                               ),
                             ),
                           ), */
-                      ],
-                    ),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
